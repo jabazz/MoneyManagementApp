@@ -24,6 +24,10 @@ public class RetriveOprations {
 		if(results.get(0) == null){
 			results.set(0, 0.0);
 		}
+		if((double)results.get(0) < 0){
+		System.out.println(moneyOwnedTo+" will pay to"+"------->"+ moneyOwnedBy +":"+ results.get(0));
+		}
+		else
 		System.out.println(moneyOwnedBy+" will pay to"+"------->"+ moneyOwnedTo +":"+ results.get(0));
 		}
 	
@@ -42,6 +46,11 @@ public class RetriveOprations {
 			}
 		session.getTransaction().commit();
 		session.close();
+	}
+	public static void totalmoneyOwed(){
+		double totalMoneyTogive;
+		double totalMoneyToGet;
+		
 	}
 	
 }
