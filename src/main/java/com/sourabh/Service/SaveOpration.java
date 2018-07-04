@@ -24,12 +24,17 @@ public class SaveOpration {
 		System.out.println("Enter the amount paid");
 		amountPayed = sc.nextDouble();
 		
-		System.out.println("Number of person to divede betweeen");
+		System.out.println("Number of person to divide betweeen (excluding who paid)");
 		noOfPerson = sc.nextInt();
 		
 		System.out.println("Enter "+noOfPerson +" names to Divide between");
 		for (int i = 1 ; i <= noOfPerson ; ++i ){
 			String person = sc.next();
+			if(person.equals(payerName)){
+				System.out.println("Payer already included in contribution!!!!!");
+				i = i-1;
+				continue;
+			}
 			nameOfPersonDividedBetween = nameOfPersonDividedBetween + i +":" +person+"/";
 			divedBetween.add(person);
 		}
@@ -50,7 +55,7 @@ public class SaveOpration {
 		List<String> payees = transaction.getPersonDividedbetween();
 		for(String payee : payees){
 			MasterRecord record = new MasterRecord();
-			record.setAmount(transaction.getAmount()/payees.size());
+			record.setAmount(transaction.getAmount()/(payees.size()+1));
 			record.setMoneyOwnedTo(transaction.getPayerName());
 			record.setMoneyOwnedBy(payee);
 			RecordExpense.insertMasterRecord(record);
